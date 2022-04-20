@@ -16,7 +16,7 @@ import java.util.Objects;
 @ToString
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "tb_categorias")
+@Table(name = "tb_categoria")
 public class Categoria  implements Serializable {
     private static final long serialVersionUID = 1L;
 

@@ -1,2 +1,2 @@
-INSERT INTO TB_CATEGORIAS(nome) VALUES ('Informática');
-INSERT INTO TB_CATEGORIAS(nome) VALUES ('Escritório');
+INSERT INTO TB_CATEGORIA(nome) VALUES ('Informática');
+INSERT INTO TB_CATEGORIA(nome) VALUES ('Escritório');
