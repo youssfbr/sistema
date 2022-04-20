@@ -14,8 +14,8 @@ import java.util.Objects;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "tb_cidade")
-public class Cidade implements Serializable {
+@Table(name = "tb_bairro")
+public class Bairro implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -26,15 +26,15 @@ public class Cidade implements Serializable {
     private String nome;
 
     @ManyToOne
-    private Estado estado;
+    private Cidade cidade;
 
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Cidade cidade = (Cidade) o;
-        return id != null && Objects.equals(id, cidade.id);
+        Bairro bairro = (Bairro) o;
+        return id != null && Objects.equals(id, bairro.id);
     }
 
     @Override

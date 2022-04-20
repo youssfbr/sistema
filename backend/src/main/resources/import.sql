@@ -10,4 +10,8 @@ INSERT INTO TB_PRODUTO_CATEGORIA(produto_id, categoria_id) VALUES (2, 1);
 INSERT INTO TB_PRODUTO_CATEGORIA(produto_id, categoria_id) VALUES (3, 1);
 INSERT INTO TB_PRODUTO_CATEGORIA(produto_id, categoria_id) VALUES (2, 2);
 
+INSERT INTO TB_ESTADO (nome) VALUES ('Ceará');
+INSERT INTO TB_CIDADE (nome, estado_id) VALUES ('Fortaleza', 1);
+INSERT INTO TB_CIDADE (nome, estado_id) VALUES ('Crato', 1);
 
+INSERT INTO TB_BAIRRO (nome, cidade_id) VALUES ('Vila Velha', 1);
