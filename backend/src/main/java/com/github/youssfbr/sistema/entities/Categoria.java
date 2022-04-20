@@ -1,5 +1,6 @@
 package com.github.youssfbr.sistema.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import org.hibernate.Hibernate;
@@ -28,6 +29,7 @@ public class Categoria implements Serializable {
     @Column(nullable = false, length = 20)
     private String nome;
 
+    @JsonManagedReference
     @ManyToMany(mappedBy = "categorias")
     private final List<Produto> produtos = new ArrayList<>();
 

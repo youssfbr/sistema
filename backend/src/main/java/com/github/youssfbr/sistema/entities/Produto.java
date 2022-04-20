@@ -1,5 +1,6 @@
 package com.github.youssfbr.sistema.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -28,6 +29,7 @@ public class Produto implements Serializable {
 
     private Double preco;
 
+    @JsonBackReference
     @ManyToMany
     @JoinTable(name = "tb_produto_categoria",
             joinColumns = @JoinColumn(name = "produto_id"),
