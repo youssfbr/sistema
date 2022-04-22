@@ -1,6 +1,5 @@
 package com.github.youssfbr.sistema.services;
 
-import com.github.youssfbr.sistema.entities.Categoria;
 import com.github.youssfbr.sistema.entities.Cliente;
 import com.github.youssfbr.sistema.repositories.IClienteRepository;
 import com.github.youssfbr.sistema.services.exceptions.ObjectNotFoundException;
@@ -35,6 +34,5 @@ public class ClienteService implements IClienteService {
     public Cliente inserir(Cliente cliente) {
         return clienteRepository.save(cliente);
     }
-
 
 }

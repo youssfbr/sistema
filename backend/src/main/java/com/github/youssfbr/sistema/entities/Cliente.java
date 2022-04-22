@@ -53,13 +53,12 @@ public class Cliente implements Serializable {
     private final Set<String> telefones = new HashSet<>();
 
 
-    public Cliente(Long id, String nome, String email, String cpfOuCnpj, LocalDate birthDate, Instant registerDate, String note, TipoCliente tipoCliente1) {
+    public Cliente(Long id, String nome, String email, String cpfOuCnpj, LocalDate birthDate, String note, TipoCliente tipoCliente1) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpfOuCnpj = cpfOuCnpj;
         this.birthDate = birthDate;
-        this.registerDate = registerDate;
         this.note = note;
         this.tipo = tipoCliente1.getCodigo();
     }
