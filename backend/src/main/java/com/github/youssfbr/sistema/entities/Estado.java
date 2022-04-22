@@ -1,5 +1,6 @@
 package com.github.youssfbr.sistema.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -27,6 +28,7 @@ public class Estado implements Serializable {
     @Column(nullable = false, length = 20)
     private String nome;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "estado")
     private final List<Cidade> cidade = new ArrayList<>();
 

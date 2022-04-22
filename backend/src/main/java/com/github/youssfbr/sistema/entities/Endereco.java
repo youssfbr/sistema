@@ -1,15 +1,13 @@
 package com.github.youssfbr.sistema.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-
 
 @Entity
 @Getter
@@ -17,35 +15,44 @@ import java.util.Objects;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "tb_cidade")
-public class Cidade implements Serializable {
+@Table(name = "tb_endereco")
+public class Endereco implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 20)
-    private String nome;
+    @Column(length = 20)
+    private String logradouro;
+
+    @Column(length = 20)
+    private String numero;
+
+    @Column(length = 40)
+    private String complemento;
+
+    @Column(length = 10)
+    private String cep;
 
     @ManyToOne
-    private Estado estado;
+    private Bairro bairro;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "cidade")
-    private final List<Bairro> bairros = new ArrayList<>();
+    @JsonBackReference
+    @ManyToOne
+    private Cliente cliente;
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Cidade cidade = (Cidade) o;
-        return id != null && Objects.equals(id, cidade.id);
+        Endereco endereco = (Endereco) o;
+        return id != null && Objects.equals(id, endereco.id);
     }
 
     @Override
     public int hashCode() {
         return getClass().hashCode();
     }
-    
 }
