@@ -29,9 +29,11 @@ public class Categoria implements Serializable {
     @Column(nullable = false, length = 20)
     private String nome;
 
+
     @JsonManagedReference
     @ManyToMany(mappedBy = "categorias")
     private final List<Produto> produtos = new ArrayList<>();
+
 
     @Override
     public boolean equals(Object o) {

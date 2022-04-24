@@ -1,47 +1,47 @@
 package com.github.youssfbr.sistema.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.github.youssfbr.sistema.models.enums.EstadoPagamento;
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Getter
 @Setter
-@Builder
-@AllArgsConstructor
-@RequiredArgsConstructor
-@Table(name = "tb_cidade")
-public class Cidade implements Serializable {
+@NoArgsConstructor
+@Table(name = "tb_pagamento")
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Pagamento implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 20)
-    private String nome;
+    private Integer estadoPagamento;
 
-
-    @ManyToOne
-    private Estado estado;
-
+    @MapsId
+    @OneToOne
     @JsonIgnore
-    @OneToMany(mappedBy = "cidade")
-    private final List<Bairro> bairros = new ArrayList<>();
+    @JoinColumn(name="pedido_id")
+    private Pedido pedido;
+
+    protected Pagamento(Long id, EstadoPagamento estado, Pedido pedido) {
+        this.id = id;
+        this.estadoPagamento = estado.getCodigo();
+        this.pedido = pedido;
+    }
 
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Cidade cidade = (Cidade) o;
-        return id != null && Objects.equals(id, cidade.id);
+        Pagamento pagamento = (Pagamento) o;
+        return id != null && Objects.equals(id, pagamento.id);
     }
 
     @Override

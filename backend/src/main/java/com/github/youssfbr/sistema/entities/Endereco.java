@@ -1,7 +1,6 @@
 package com.github.youssfbr.sistema.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -12,9 +11,7 @@ import java.util.Objects;
 @Entity
 @Getter
 @Setter
-@Builder
-@AllArgsConstructor
-@RequiredArgsConstructor
+
 @Table(name = "tb_endereco")
 public class Endereco implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -34,6 +31,7 @@ public class Endereco implements Serializable {
 
     @Column(length = 10)
     private String cep;
+
 
     @ManyToOne
     private Bairro bairro;

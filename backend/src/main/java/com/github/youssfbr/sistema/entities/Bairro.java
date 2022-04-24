@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-
 @Entity
 @Getter
 @Setter
@@ -24,6 +23,7 @@ public class Bairro implements Serializable {
 
     @Column(nullable = false, length = 20)
     private String nome;
+
 
     @ManyToOne
     private Cidade cidade;

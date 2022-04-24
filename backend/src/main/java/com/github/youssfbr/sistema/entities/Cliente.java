@@ -1,10 +1,10 @@
 package com.github.youssfbr.sistema.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.github.youssfbr.sistema.models.enums.TipoCliente;
 import lombok.*;
 import org.hibernate.Hibernate;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
@@ -14,9 +14,9 @@ import java.util.*;
 @Entity
 @Getter
 @Setter
-@Builder
-@AllArgsConstructor
-@RequiredArgsConstructor
+
+@NoArgsConstructor
+
 @Table(name = "tb_cliente")
 public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -44,6 +44,7 @@ public class Cliente implements Serializable {
 
     private Integer tipo;
 
+
     @JsonManagedReference
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
     private final List<Endereco> enderecos = new ArrayList<>();
@@ -52,15 +53,18 @@ public class Cliente implements Serializable {
     @CollectionTable(name = "tb_telefone")
     private final Set<String> telefones = new HashSet<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "cliente")
+    private final List<Pedido> pedidos = new ArrayList<>();
 
-    public Cliente(Long id, String nome, String email, String cpfOuCnpj, LocalDate birthDate, String note, TipoCliente tipoCliente1) {
+    public Cliente(Long id, String nome, String email, String cpfOuCnpj, LocalDate birthDate, String note, TipoCliente tipo) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpfOuCnpj = cpfOuCnpj;
         this.birthDate = birthDate;
         this.note = note;
-        this.tipo = tipoCliente1.getCodigo();
+        this.tipo = tipo.getCodigo();
     }
 
     public TipoCliente getTipo() {
