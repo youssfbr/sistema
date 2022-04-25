@@ -33,4 +33,8 @@ INSERT INTO TB_PAGAMENTO_COM_CARTAO (numero_de_parcelas, pedido_id) VALUES (6, 1
 INSERT INTO TB_PAGAMENTO (estado_pagamento, pedido_id) VALUES (1, 2)
 INSERT INTO TB_PAGAMENTO_COM_BOLETO  (data_vencimento, pedido_id) VALUES ('2017-10-20', 2);
 
+-- ITENS PEDIDO
+INSERT INTO TB_ITEM_PEDIDO (desconto, preco, quantidade, produto_id, pedido_id) VALUES (0.00, 2000.0, 1, 1, 1);
+INSERT INTO TB_ITEM_PEDIDO (desconto, preco, quantidade, produto_id, pedido_id) VALUES (0.00, 80.0, 2, 3, 1);
+INSERT INTO TB_ITEM_PEDIDO (desconto, preco, quantidade, produto_id, pedido_id) VALUES (100.00, 800.0, 1, 2, 2);
 
